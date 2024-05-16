@@ -11,6 +11,10 @@ temas_ambientais.count()
 
 # COMMAND ----------
 
+temas_ambientais.display()
+
+# COMMAND ----------
+
 # MAGIC %sql
 # MAGIC
 # MAGIC create database if not exists silver;
