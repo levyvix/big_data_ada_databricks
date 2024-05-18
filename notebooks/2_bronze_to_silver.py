@@ -7,11 +7,11 @@ temas_ambientais = spark.read.table("bronze.temas_ambientais")
 
 # COMMAND ----------
 
-temas_ambientais.count()
+temas_semduplicada = temas_ambientais.dropDuplicates(["registro_car"])
 
 # COMMAND ----------
 
-temas_ambientais.display()
+temas_ambientais_clean = temas_semduplicada.where("situacao_cadastro is not null")
 
 # COMMAND ----------
 
@@ -22,7 +22,7 @@ temas_ambientais.display()
 # COMMAND ----------
 
 (
-    temas_ambientais
+    temas_ambientais_clean
     .write
     .format("delta")
     .mode("overwrite")
